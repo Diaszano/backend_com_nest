@@ -19,7 +19,8 @@
 				"VisualStudioExptTeam.vscodeintellicode",
 				"VisualStudioExptTeam.intellicode-api-usage-examples",
 				"DavidAnson.vscode-markdownlint",
-				"christian-kohler.path-intellisense"
+				"christian-kohler.path-intellisense",
+				"Prisma.prisma"
 			]
 		}
 	}
