@@ -14,4 +14,8 @@ export class MessagesService {
       },
     ];
   }
+
+  public async findById(id: number) {
+    return { id, text: 'Olá Pessoa' };
+  }
 }
