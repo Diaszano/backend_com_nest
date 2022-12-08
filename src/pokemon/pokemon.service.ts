@@ -8,15 +8,23 @@ export class PokemonService {
   constructor(private readonly __prisma: PrismaService) {}
 
   public async create(data: CreatePokemonDto) {
-    return this.__prisma.pokemon.create({ data });
+    return this.__prisma.pokemon.create({
+      data,
+      include: { images: { select: { url: true } } },
+    });
   }
 
   public async findAll() {
-    return await this.__prisma.pokemon.findMany();
+    return await this.__prisma.pokemon.findMany({
+      include: { images: { select: { url: true } } },
+    });
   }
 
   public async findOne(id: number) {
-    return this.__prisma.pokemon.findUniqueOrThrow({ where: { id } });
+    return this.__prisma.pokemon.findUniqueOrThrow({
+      where: { id },
+      include: { images: { select: { url: true } } },
+    });
   }
 
   public async update(id: number, data: UpdatePokemonDto) {
