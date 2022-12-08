@@ -23,7 +23,7 @@ export class MessagesController {
 
   @Get(':id')
   public async findById(@Param('id', ParseIntPipe) id: number) {
-    return await this.messagesServices.findById(+id).catch((e) => {
+    return await this.messagesServices.findById(id).catch((e) => {
       throw new NotFoundException(e.message);
     });
   }
@@ -38,13 +38,15 @@ export class MessagesController {
     @Param('id', ParseIntPipe) id: number,
     @Body() message: MessageDTO,
   ) {
-    return this.messagesServices.update(+id, message).catch((e) => {
+    return this.messagesServices.update(id, message).catch((e) => {
       throw new NotFoundException(e.message);
     });
   }
 
   @Delete(':id')
   public async delete(@Param('id', ParseIntPipe) id: number) {
-    return this.messagesServices.delete(+id);
+    return this.messagesServices.delete(id).catch((e) => {
+      throw new NotFoundException(e.message);
+    });
   }
 }
