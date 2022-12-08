@@ -7,23 +7,23 @@ import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 export class PokemonService {
   constructor(private readonly __prisma: PrismaService) {}
 
-  create(data: CreatePokemonDto) {
+  public async create(data: CreatePokemonDto) {
     return this.__prisma.pokemon.create({ data });
   }
 
-  findAll() {
-    return this.__prisma.pokemon.findMany();
+  public async findAll() {
+    return await this.__prisma.pokemon.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} pokemon`;
+  public async findOne(id: number) {
+    return this.__prisma.pokemon.findUniqueOrThrow({ where: { id } });
   }
 
-  update(id: number, updatePokemonDto: UpdatePokemonDto) {
-    return `This action updates a #${id} pokemon`;
+  public async update(id: number, data: UpdatePokemonDto) {
+    return this.__prisma.pokemon.update({ where: { id }, data });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} pokemon`;
+  public async remove(id: number) {
+    return this.__prisma.pokemon.delete({ where: { id } });
   }
 }

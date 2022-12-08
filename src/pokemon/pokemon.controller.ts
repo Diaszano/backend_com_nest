@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
@@ -16,27 +17,30 @@ export class PokemonController {
   constructor(private readonly __pokemonService: PokemonService) {}
 
   @Post()
-  create(@Body() createPokemonDto: CreatePokemonDto) {
-    return this.__pokemonService.create(createPokemonDto);
+  public async create(@Body() createPokemonDto: CreatePokemonDto) {
+    return await this.__pokemonService.create(createPokemonDto);
   }
 
   @Get()
-  findAll() {
-    return this.__pokemonService.findAll();
+  public async findAll() {
+    return await this.__pokemonService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.__pokemonService.findOne(+id);
+  public async findOne(@Param('id', ParseIntPipe) id: number) {
+    return await this.__pokemonService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePokemonDto: UpdatePokemonDto) {
-    return this.__pokemonService.update(+id, updatePokemonDto);
+  public async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updatePokemonDto: UpdatePokemonDto,
+  ) {
+    return await this.__pokemonService.update(id, updatePokemonDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.__pokemonService.remove(+id);
+  public async remove(@Param('id', ParseIntPipe) id: number) {
+    return await this.__pokemonService.remove(id);
   }
 }
