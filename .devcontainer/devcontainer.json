@@ -6,6 +6,22 @@
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/nestjs-cli:1": {},
 		"ghcr.io/devcontainers-contrib/features/prisma:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"streetsidesoftware.code-spell-checker-portuguese-brazilian",
+				"streetsidesoftware.code-spell-checker",
+				"dotenv.dotenv-vscode",
+				"dbaeumer.vscode-eslint",
+				"oderwat.indent-rainbow",
+				"SirTori.indenticator",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"VisualStudioExptTeam.intellicode-api-usage-examples",
+				"DavidAnson.vscode-markdownlint",
+				"christian-kohler.path-intellisense"
+			]
+		}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
