@@ -7,12 +7,12 @@ import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 export class PokemonService {
   constructor(private readonly __prisma: PrismaService) {}
 
-  create(createPokemonDto: CreatePokemonDto) {
-    return 'This action adds a new pokemon';
+  create(data: CreatePokemonDto) {
+    return this.__prisma.pokemon.create({ data });
   }
 
   findAll() {
-    return this.__prisma.pokemons.findMany();
+    return this.__prisma.pokemon.findMany();
   }
 
   findOne(id: number) {
